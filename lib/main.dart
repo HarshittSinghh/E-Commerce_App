@@ -1,4 +1,7 @@
+import 'package:ecomm_app/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:ecomm_app/spalsh_screen.dart';
+import 'package:ecomm_app/product_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MyHomePage(
-        title: 'Foodie\'s Delight',
-      ),
+      home: SplashScreen(),
     );
   }
 }
@@ -45,14 +46,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
-          'Foodie\'s Delught',
+          'Foodie\'s Delight',
           style: Theme.of(context).textTheme.headline6,
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            color: Colors.white,
-            onPressed: () {},
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile()));
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                Icons.account_box,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -204,7 +213,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProductDetailsPage(
+                                  builder: (context) =>
+                                      const ProductDetailsPage(
                                     productName: 'Cadbury Dairy Milk',
                                     productDescription:
                                         'Cadbury Dairy Milk is a classic chocolate bar made with milk chocolate.',
@@ -244,7 +254,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProductDetailsPage(
+                                  builder: (context) =>
+                                      const ProductDetailsPage(
                                     productName: 'Cadbury 5Star',
                                     productDescription:
                                         'Cadbury 5Star is a chocolate bar filled with caramel and nougat.',
@@ -284,7 +295,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProductDetailsPage(
+                                  builder: (context) =>
+                                      const ProductDetailsPage(
                                     productName: 'Cadbury Bournvita',
                                     productDescription:
                                         'Cadbury Bournvita is a chocolate health drink made with malted barley and milk solids.',
@@ -324,7 +336,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProductDetailsPage(
+                                  builder: (context) =>
+                                      const ProductDetailsPage(
                                     productName: 'Cadbury Perk',
                                     productDescription:
                                         'Cadbury Perk is a crispy wafer coated with chocolate.',
@@ -658,86 +671,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        selectedItemColor: Colors.blue,
-      ),
-    );
-  }
-}
-
-class ProductDetailsPage extends StatelessWidget {
-  final String productName;
-  final String productDescription;
-  final String imageUrl;
-
-  const ProductDetailsPage({
-    Key? key,
-    required this.productName,
-    required this.productDescription,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(productName),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.network(
-              imageUrl,
-              width: 200,
-              height: 200,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(height: 20),
-            Text(
-              productName,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              productDescription,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Implement add to cart functionality
-              },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.add_shopping_cart),
-                  SizedBox(width: 5),
-                  Text('Add to Cart'),
-                ],
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
