@@ -1,7 +1,8 @@
-import 'package:ecomm_app/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:ecomm_app/spalsh_screen.dart';
 import 'package:ecomm_app/product_details.dart';
+import 'package:ecomm_app/NavBar.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,27 +44,32 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: NavBar(),
+      ),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Foodie\'s Delight',
           style: Theme.of(context).textTheme.headline6,
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Profile()));
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(
-                Icons.account_box,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
+
+        // actions: [
+        // GestureDetector(
+        //   onTap: () {
+        //     Navigator.push(
+        //         context, MaterialPageRoute(builder: (context) => Profile()));
+        //   },
+        //   child: const Padding(
+        //     padding: EdgeInsets.all(10),
+        //     child: Icon(
+        //       Icons.account_box,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ),
+        // ],
       ),
       body: ListView(
         children: [
